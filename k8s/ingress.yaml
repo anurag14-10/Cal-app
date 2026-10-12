@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: calc-app-ingress
+  namespace: student-2401059
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: 2401059.imcc.skilli.in
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: calc-app-service
+                port:
+                  number: 80

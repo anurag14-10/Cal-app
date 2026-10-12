@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calc-app
+  namespace: student-2401059
+  labels:
+    app: calc-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calc-app
+  template:
+    metadata:
+      labels:
+        app: calc-app
+    spec:
+      serviceAccountName: sa-2401059
+      containers:
+        - name: calc-app
+          image: nexus.imcc.skilli.in/student-docker/2401059:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          env:
+            - name: PORT
+              value: "3000"
+            - name: NODE_ENV
+              value: "production"

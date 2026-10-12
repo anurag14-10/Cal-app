@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: calc-app-service
+  namespace: student-2401059
+  labels:
+    app: calc-app
+spec:
+  type: ClusterIP
+  selector:
+    app: calc-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      protocol: TCP
