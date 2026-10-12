@@ -111,21 +111,8 @@ pipeline {
                     sh """
                         echo "🔧 Authenticating with Nexus Docker Registry..."
 
-                        VALID_AUTH=""
-                        for P in "${env.NEXUS_PASS}" "Skilli@123"; do
-                            C_AUTH=\$(printf "%s:%s" "${env.NEXUS_USER}" "\$P" | base64 | tr -d '\\r\\n')
-                            echo "Testing Nexus auth..."
-                            if wget -q -O /dev/null --header "Authorization: Basic \$C_AUTH" "https://${env.NEXUS_REGISTRY}/v2/" 2>/dev/null; then
-                                echo "✅ Nexus auth successful!"
-                                VALID_AUTH="\$C_AUTH"
-                                break
-                            fi
-                        done
-
-                        if [ -z "\$VALID_AUTH" ]; then
-                            echo "⚠️ Fallback — using base64 of NEXUS_USER:NEXUS_PASS directly"
-                            VALID_AUTH=\$(printf "%s:%s" "${env.NEXUS_USER}" "${env.NEXUS_PASS}" | base64 | tr -d '\\r\\n')
-                        fi
+                        # Directly use valid credentials from environment
+                        VALID_AUTH=\$(printf "%s:%s" "${env.NEXUS_USER}" "${env.NEXUS_PASS}" | base64 | tr -d '\\r\\n')
 
                         CONFIG_JSON="{\\"auths\\":{\\"${env.NEXUS_REGISTRY}\\":{\\"auth\\":\\"\$VALID_AUTH\\"},\\"https://${env.NEXUS_REGISTRY}\\":{\\"auth\\":\\"\$VALID_AUTH\\"}}}"
                         for DIR in "\$HOME/.docker" "/home/user/.docker" "/home/jenkins/agent/.docker" "/root/.docker"; do
