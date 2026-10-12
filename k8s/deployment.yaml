@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: calc-app
-          image: nexus.imcc.skilli.in/student-docker/2401059/calc-app:latest
+          image: nexus.imcc.skilli.in/student-docker/2401059:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

@@ -44,10 +44,10 @@ pipeline {
         SONAR_CRED_ID       = 'sonar-token-student'   // Kind: Secret text
         KUBE_CRED_ID        = 'student-kubeconfig-2401059' // Kind: Secret file
 
-        // Dynamic Image Tags
+        // Dynamic Image Tags (Exact format from welcome email)
         IMAGE_TAG           = "${env.BUILD_NUMBER}-${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}"
-        FULL_IMAGE          = "${env.NEXUS_REGISTRY}/${env.NEXUS_REPO_PATH}/${env.IMAGE_NAME}:${env.IMAGE_TAG}"
-        LATEST_IMAGE        = "${env.NEXUS_REGISTRY}/${env.NEXUS_REPO_PATH}/${env.IMAGE_NAME}:latest"
+        FULL_IMAGE          = "${env.NEXUS_REGISTRY}/${env.NEXUS_REPO_PATH}:${env.IMAGE_TAG}"
+        LATEST_IMAGE        = "${env.NEXUS_REGISTRY}/${env.NEXUS_REPO_PATH}:latest"
     }
 
     stages {
