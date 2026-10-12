@@ -42,7 +42,7 @@ pipeline {
         // [STEP 2] JENKINS CREDENTIAL IDs (inside student-2401059 Folder)
         // =====================================================================
         SONAR_CRED_ID       = 'sonar-token-student'   // Kind: Secret text
-        KUBE_CRED_ID        = 'student-kubeconfig'    // Kind: Secret file
+        KUBE_CRED_ID        = 'student-kubeconfig-2401059' // Kind: Secret file
 
         // Dynamic Image Tags
         IMAGE_TAG           = "${env.BUILD_NUMBER}-${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}"
