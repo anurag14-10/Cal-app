@@ -54,7 +54,7 @@ export const DbInfoModal: React.FC<DbInfoModalProps> = ({
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span style={{ color: "var(--text-muted)" }}>Driver:</span>
-              <span style={{ color: "#34d399", fontWeight: 600 }}>better-sqlite3</span>
+              <span style={{ color: "#34d399", fontWeight: 600 }}>JSON Ledger Engine</span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span style={{ color: "var(--text-muted)" }}>Storage Engine:</span>
